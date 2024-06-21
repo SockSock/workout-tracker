@@ -9,25 +9,29 @@
         android:id="@+id/sets_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Sets" />
+        android:hint="Sets"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/reps_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Reps" />
+        android:hint="Reps"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/weight_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Weight" />
+        android:hint="Weight"
+        android:inputType="numberDecimal" />
 
     <EditText
         android:id="@+id/increment_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Increment" />
+        android:hint="Increment"
+        android:inputType="numberDecimal" />
 
     <Button
         android:id="@+id/confirm_button"
