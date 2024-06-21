@@ -17,6 +17,9 @@
             android:name=".ExerciseListActivity"
             android:exported="false" />
         <activity
+            android:name=".SetExerciseAttributesActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
