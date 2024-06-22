@@ -34,7 +34,8 @@ public class ExerciseListActivity extends AppCompatActivity {
         }
 
         workoutRepository = new WorkoutRepository(this);
-        currentWorkout = new Workout("My Workout"); // Default name, can be overridden
+        String workoutName = getIntent().getStringExtra("workoutName");
+        currentWorkout = new Workout(workoutName); // Default name, can be overridden
         selectedExercises = new ArrayList<>();
         allExercises = new ArrayList<>();
 
