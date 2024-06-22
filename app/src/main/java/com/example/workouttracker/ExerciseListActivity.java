@@ -41,8 +41,17 @@ public class ExerciseListActivity extends AppCompatActivity {
 
         allExercises.add(new Exercise("Bench Press", 0, 0, 0, 0));
         allExercises.add(new Exercise("Overhead Press", 0, 0, 0, 0));
-        allExercises.add(new Exercise("Squat", 0, 0, 0, 0));
-        allExercises.add(new Exercise("Lat Pulldown", 0, 0, 0, 0));
+        allExercises.add(new Exercise("Barbell Squat", 0, 0, 0, 0));
+        allExercises.add(new Exercise("Tricep Extension", 0, 0, 0, 0));
+        allExercises.add(new Exercise("Lateral Raises", 0, 0, 0, 0));
+        allExercises.add(new Exercise("Hammer Curls", 0, 0, 0, 0));
+        allExercises.add(new Exercise("Bicep Curls", 0, 0, 0, 0));
+        allExercises.add(new Exercise("Chest Fly", 0, 0, 0, 0));
+        allExercises.add(new Exercise("Reverse Fly", 0, 0, 0, 0));
+        allExercises.add(new Exercise("Leg Press", 0, 0, 0, 0));
+        allExercises.add(new Exercise("Calf Press", 0, 0, 0, 0));
+        allExercises.add(new Exercise("Cable Row", 0, 0, 0, 0));
+        allExercises.add(new Exercise("Leg Extensions", 0, 0, 0, 0));
 
         ListView exerciseListView = findViewById(R.id.exercise_list_view);
         ArrayAdapter<Exercise> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, allExercises);
