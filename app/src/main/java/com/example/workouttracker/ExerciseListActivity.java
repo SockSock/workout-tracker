@@ -1,5 +1,6 @@
 package com.example.workouttracker;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,12 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class ExerciseListActivity extends AppCompatActivity {
-
     private static final int REQUEST_CODE_SET_ATTRIBUTES = 1;
+    private static final String EXTRA_WORKOUT_NAME = "workoutName";
+
     private Workout currentWorkout;
     private ArrayList<Exercise> selectedExercises;
     private ArrayList<Exercise> allExercises;
     private int currentSelectedPosition = -1;
+    private WorkoutRepository workoutRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,8 @@ public class ExerciseListActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        currentWorkout = new Workout("My Workout");
+        workoutRepository = new WorkoutRepository(this);
+        currentWorkout = new Workout("My Workout"); // Default name, can be overridden
         selectedExercises = new ArrayList<>();
         allExercises = new ArrayList<>();
 
@@ -44,30 +48,32 @@ public class ExerciseListActivity extends AppCompatActivity {
         exerciseListView.setAdapter(adapter);
         exerciseListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        exerciseListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                currentSelectedPosition = position;
-                Exercise exercise = allExercises.get(position);
-                if (selectedExercises.contains(exercise)) {
-                    selectedExercises.remove(exercise);
-                } else {
-                    selectedExercises.add(exercise);
-                    Intent intent = new Intent(ExerciseListActivity.this, SetExerciseAttributesActivity.class);
-                    startActivityForResult(intent, REQUEST_CODE_SET_ATTRIBUTES);
-                }
+        exerciseListView.setOnItemClickListener((parent, view, position, id) -> {
+            currentSelectedPosition = position;
+            Exercise exercise = allExercises.get(position);
+            if (selectedExercises.contains(exercise)) {
+                selectedExercises.remove(exercise);
+            } else {
+                selectedExercises.add(exercise);
+                Intent intent = new Intent(ExerciseListActivity.this, SetExerciseAttributesActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_SET_ATTRIBUTES);
             }
         });
 
         Button saveButton = findViewById(R.id.save_button);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (Exercise exercise : selectedExercises) {
-                    currentWorkout.addExercise(exercise);
-                }
-                finish();
+        saveButton.setOnClickListener(v -> {
+            for (Exercise exercise : selectedExercises) {
+                currentWorkout.addExercise(exercise);
             }
+            new Thread(() -> {
+                workoutRepository.addWorkout(currentWorkout);
+                runOnUiThread(() -> {
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra(EXTRA_WORKOUT_NAME, currentWorkout.getName());
+                    setResult(Activity.RESULT_OK, resultIntent);
+                    finish();
+                });
+            }).start();
         });
     }
 
