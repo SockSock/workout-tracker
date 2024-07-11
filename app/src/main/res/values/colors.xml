@@ -6,4 +6,5 @@
     <color name="colorBottomNavText">#000000</color>
     <color name="colorBottomNavTextDark">#FFFFFF</color>
     <color name="white">#FFFFFF</color>
+    <color name="selectedItemColor">#66BB6A</color>
 </resources>

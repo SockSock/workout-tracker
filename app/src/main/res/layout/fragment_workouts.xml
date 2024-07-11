@@ -4,10 +4,19 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/text_workouts"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/NewWorkoutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Workouts Fragment"
-        android:textSize="18sp"/>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_new_workout"
+        android:contentDescription="New Workout"
+        android:layout_margin="16dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </RelativeLayout>
