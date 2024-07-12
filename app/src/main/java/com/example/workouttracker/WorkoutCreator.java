@@ -3,24 +3,16 @@ package com.example.workouttracker;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.MenuItem;
 import android.view.View;
 
-import androidx.core.view.WindowCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.workouttracker.databinding.ActivityWorkoutCreatorBinding;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class WorkoutCreator extends AppCompatActivity {
@@ -29,7 +21,7 @@ public class WorkoutCreator extends AppCompatActivity {
     private Workout workout;
     private ArrayList<Exercise> exerciseList;
     private RecyclerView recyclerView;
-    private ExerciseAdapter adapter;
+    private WorkoutCreatorAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +39,14 @@ public class WorkoutCreator extends AppCompatActivity {
 
         workout = new Workout(workoutName);
         exerciseList = new ArrayList<>();
-        exerciseList.add(new Exercise("Bench Press", 0, 0, 0, 0));
-        exerciseList.add(new Exercise("Overhead Press", 0, 0, 0, 0));
-        exerciseList.add(new Exercise("Barbell Squat", 0, 0, 0, 0));
-        exerciseList.add(new Exercise("Lat Pulldown", 0, 0, 0, 0));
+        exerciseList.add(new Exercise("Bench Press", 0, 0, 0, 2.5));
+        exerciseList.add(new Exercise("Overhead Press", 0, 0, 0, 2.5));
+        exerciseList.add(new Exercise("Barbell Squat", 0, 0, 0, 5));
+        exerciseList.add(new Exercise("Lat Pulldown", 0, 0, 0, 2.5));
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new ExerciseAdapter(this, exerciseList);
+        adapter = new WorkoutCreatorAdapter(this, exerciseList);
         recyclerView.setAdapter(adapter);
 
         binding.fab.setOnClickListener(new View.OnClickListener() {

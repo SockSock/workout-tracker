@@ -1,15 +1,32 @@
 package com.example.workouttracker;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
+@Entity(tableName = "workout_table")
 public class Workout implements Serializable {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
     private String name;
+    @TypeConverters(Converters.class)
     private ArrayList<Exercise> exercises;
 
     public Workout(String name) {
         this.name = name;
         this.exercises = new ArrayList<>();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

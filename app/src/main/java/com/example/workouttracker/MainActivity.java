@@ -15,6 +15,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        Fragment workoutsFragment = new WorkoutsFragment();
+        Fragment statisticsFragment = new StatisticsFragment();
+        Fragment profileFragment = new ProfileFragment();
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -22,11 +25,11 @@ public class MainActivity extends AppCompatActivity {
 
                 int itemId = item.getItemId();
                 if (itemId == R.id.navigation_workouts) {
-                    selectedFragment = new WorkoutsFragment();
+                    selectedFragment = workoutsFragment;
                 } else if (itemId == R.id.navigation_statistics) {
-                    selectedFragment = new StatisticsFragment();
+                    selectedFragment = statisticsFragment;
                 } else if (itemId == R.id.navigation_profile) {
-                    selectedFragment = new ProfileFragment();
+                    selectedFragment = profileFragment;
                 }
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, selectedFragment).commit();

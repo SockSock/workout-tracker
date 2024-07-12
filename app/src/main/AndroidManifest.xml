@@ -19,6 +19,9 @@
             android:label="Create a new Workout"
             android:theme="@style/Theme.WorkoutTracker" />
         <activity
+            android:name=".WorkoutDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
